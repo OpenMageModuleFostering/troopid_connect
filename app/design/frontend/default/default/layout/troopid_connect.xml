@@ -1,18 +1,24 @@
 <?xml version="1.0"?>
-<layout version="0.1.0">
+<layout version="0.2.0">
     <default>
         <reference name="head">
             <action method="addCss"><stylesheet>troopid_connect/troopid.css</stylesheet></action>
         </reference>
-        <reference name="footer">
+        <reference name="before_body_end">
             <block type="troopid_connect/cart" name="troopid.connect.script" as="script" template="troopid/connect/script.phtml" />
         </reference>
     </default>
 
     <checkout_cart_index>
         <reference name="checkout.cart">
-            <block type="core/text_list" name="checkout.cart.extra">
-                <block type="troopid_connect/cart" name="checkout.cart.connect" as="connect" template="troopid/connect/cart.phtml"/>
+            <action method="unsetChild">
+                <alias>coupon</alias>
+            </action>
+            <block type="core/text_list" name="checkout.custom.coupon" as="coupon">
+                <action method="insert">
+                    <block>checkout.cart.coupon</block>
+                </action>
+                <block type="troopid_connect/cart" name="checkout.cart.connect" as="connect" template="troopid/connect/cart.phtml" before="-"/>
             </block>
         </reference>
     </checkout_cart_index>
