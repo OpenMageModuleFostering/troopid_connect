@@ -13,6 +13,8 @@ class TroopID_Connect_Block_Adminhtml_System_Config_Instructions extends TroopID
         $html .= '<li>' . $this->__("Fill in <strong>Base URI</strong> with") . ' ' .  $this->getStore()->getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) . '</li>';
         $html .= '<li>' . $this->__("Copy and paste your <strong>Client ID</strong> and <strong>Client Secret</strong> values from your application settings on ID.me") . '</li>';
         $html .= '<li>' . $this->__("That's it! You are ready to go.") . '</li>';
+        $html .= '<li>' . $this->__("You can customize the buttons by overriding or extending the cart template.") . '</li>';
+        $html .= '<li>' . $this->__("Custom buttons need to have a <strong>troopid-connect-trigger</strong> class and a <strong>data-scope</strong> attribute that determines the affinity group you want to verify.") . '</li>';
         $html .= '</ul>';
         $html .= '<div class="heading"><span class="heading-intro"><a href="' . $config["learn_more_url"] . '" target="_blank">' . $this->__("Learn more about ID.me") . '</a></span></div>';
         $html .= '<div class="heading"><span class="heading-intro"><a href="' . $config["docs_url"] . '" target="_blank">' . $this->__("Read developer documentation") . '</a></span></div>';
