@@ -64,12 +64,14 @@ class TroopID_Connect_Helper_Oauth extends Mage_Core_Helper_Abstract {
         if (empty($token))
             return null;
 
-        $config = Mage::helper("troopid_connect");
-
         $client = new Zend_Http_Client();
         $client->setUri($this->getDomain() . self::PROFILE_PATH);
         $client->setParameterGet(array(
             "access_token" => $token
+        ));
+
+        $client->setHeaders(array(
+            "X-API-ORIGIN" => "MAGENTO-TID"
         ));
 
         try {
@@ -87,7 +89,16 @@ class TroopID_Connect_Helper_Oauth extends Mage_Core_Helper_Abstract {
     }
 
     public function getAffiliations() {
-        $client     = new Zend_Http_Client($this->getDomain() . self::AFFILIATIONS_PATH);
+        $config = $this->getConfig();
+        $client = new Zend_Http_Client($this->getDomain() . self::AFFILIATIONS_PATH);
+        $client->setParameterGet(array(
+            "client_id" => $config->getKey("client_id")
+        ));
+
+        $client->setHeaders(array(
+            "X-API-ORIGIN" => "MAGENTO-TID"
+        ));
+
         $response   = $client->request("GET");
         $values     = array();
 

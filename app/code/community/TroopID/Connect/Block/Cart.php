@@ -1,5 +1,4 @@
 <?php
-
 class TroopID_Connect_Block_Cart extends Mage_Checkout_Block_Cart_Abstract {
 
     public function isOperational() {
