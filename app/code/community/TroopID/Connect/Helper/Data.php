@@ -55,7 +55,7 @@ class TroopID_Connect_Helper_Data extends Mage_Core_Helper_Abstract {
             return $values;
 
         $values = $oauth->getAffiliations();
-        $cache->save(serialize($values), self::CACHE_KEY, array(self::CACHE_TAG), 60*60);
+        $cache->save(serialize($values), self::CACHE_KEY, array(self::CACHE_TAG), 60*60*24*7);
 
         return $values;
     }

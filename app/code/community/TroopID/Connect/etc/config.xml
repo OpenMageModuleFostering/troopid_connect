@@ -24,6 +24,17 @@
                 </troopid_connect>
             </updates>
         </layout>
+
+        <events>
+            <checkout_cart_save_before>
+                <observers>
+                    <clear_troopid_affiliation>
+                        <class>troopid_connect/cart_observer</class>
+                        <method>clearAffiliation</method>
+                    </clear_troopid_affiliation>
+                </observers>
+            </checkout_cart_save_before>
+        </events>
     </frontend>
 
     <adminhtml>
