@@ -15,6 +15,7 @@ class TroopID_Connect_Model_Cart_Observer {
             $cart->getQuote()->setTroopidAffiliation(NULL);
             $cart->getQuote()->save();
         }
+
     }
 
 }

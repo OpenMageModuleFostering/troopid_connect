@@ -17,6 +17,21 @@ class TroopID_Connect_AuthorizeController extends Mage_Core_Controller_Front_Act
         return Mage::getSingleton("checkout/cart");
     }
 
+    public function removeAction() {
+        $cart   = $this->getCart();
+        $quote  = $cart->getQuote();
+
+        $quote->setTroopidUid(NULL);
+        $quote->setTroopidScope(NULL);
+        $quote->setTroopidAffiliation(NULL);
+        $quote->save();
+
+        $this->_redirectUrl($_SERVER['HTTP_REFERER']);
+        $this->setFlag("", self::FLAG_NO_DISPATCH, true);
+
+        return $this;
+    }
+
     public function authorizeAction() {
         $session    = $this->getSession();
         $scope      = $this->getRequest()->getParam("scope");

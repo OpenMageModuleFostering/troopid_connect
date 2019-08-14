@@ -13,6 +13,10 @@ class TroopID_Connect_Block_Cart extends Mage_Checkout_Block_Cart_Abstract {
         return Mage::getUrl("troopid/authorize/authorize");
     }
 
+    public function getRemoveUrl() {
+        return Mage::getUrl("troopid/authorize/remove");
+    }
+
     public function hasAffiliation() {
         return $this->getQuote() && $this->getQuote()->getTroopidScope() !== null;
     }
