@@ -64,10 +64,10 @@ class TroopID_Connect_Model_Rule_Condition extends Mage_Rule_Model_Condition_Abs
         $name   = $helper->getAffiliationByScope($scope);
         $value  = $this->getValue();
 
-        if ($name === $value)
+        if ($value === $name)
             return true;
 
-        if ($name === ($value . " - " . $group))
+        if ($value === ($name . " - " . $group))
             return true;
 
         return false;

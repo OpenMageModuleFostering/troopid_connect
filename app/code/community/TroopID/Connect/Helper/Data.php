@@ -46,15 +46,16 @@ class TroopID_Connect_Helper_Data extends Mage_Core_Helper_Abstract {
     }
 
     public function getAffiliations() {
-        $cache  = Mage::getSingleton("core/cache");
+        $cache  = Mage::app()->getCache();
         $oauth  = Mage::helper("troopid_connect/oauth");
         $values = $cache->load(self::CACHE_KEY);
+        $values = unserialize($values);
 
         if (is_array($values))
             return $values;
 
         $values = $oauth->getAffiliations();
-        $cache->save($values, self::CACHE_KEY, array(self::CACHE_TAG), 60*60);
+        $cache->save(serialize($values), self::CACHE_KEY, array(self::CACHE_TAG), 60*60);
 
         return $values;
     }
