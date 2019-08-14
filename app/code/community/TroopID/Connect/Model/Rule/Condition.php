@@ -4,7 +4,7 @@ class TroopID_Connect_Model_Rule_Condition extends Mage_Rule_Model_Condition_Abs
     public function loadAttributeOptions() {
 
         $this->setAttributeOption(array(
-            "troopid_affiliation" => Mage::helper("troopid_connect")->__("Troop ID Verified Affiliation")
+            "troopid_affiliation" => Mage::helper("troopid_connect")->__("ID.me Verified Affiliation")
         ));
 
         return $this;
@@ -25,7 +25,17 @@ class TroopID_Connect_Model_Rule_Condition extends Mage_Rule_Model_Condition_Abs
             $affiliations = Mage::helper("troopid_connect")->getAffiliations();
 
             foreach ($affiliations as $affiliation) {
-                $options[$affiliation] = $affiliation;
+                $name   = $affiliation["name"];
+                $groups = $affiliation["groups"];
+
+                if (sizeof($groups) > 0)
+                    $options[$name] = $name . " (including all subgroups)";
+                else
+                    $options[$name] = $name;
+
+                foreach ($groups as $group) {
+                    $options[$name . " - " . $group] = $name . " - " . $group;
+                }
             }
 
             $this->setData("value_select_options", $options);
@@ -43,13 +53,24 @@ class TroopID_Connect_Model_Rule_Condition extends Mage_Rule_Model_Condition_Abs
 
     public function validate(Varien_Object $object) {
 
-        if (!Mage::helper("troopid_connect")->isEnabled())
+        $helper = Mage::helper("troopid_connect");
+
+        if (!$helper->isOperational())
             return true;
 
-        $quote = $object->getQuote();
-        $value = $quote->getTroopidAffiliation();
+        $quote  = $object->getQuote();
+        $scope  = $quote->getTroopidScope();
+        $group  = $quote->getTroopidAffiliation();
+        $name   = $helper->getAffiliationByScope($scope);
+        $value  = $this->getValue();
 
-        return $value === $this->getValue();
+        if ($name === $value)
+            return true;
+
+        if ($name === ($value . " - " . $group))
+            return true;
+
+        return false;
     }
 
 }

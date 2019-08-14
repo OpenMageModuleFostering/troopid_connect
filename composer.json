@@ -6,8 +6,8 @@
     "description": "TroopID Connect integration.",
     "authors": [
     {
-        "name": "Troop ID",
-        "email": "support@troopid.com"
+        "name": "ID.me",
+        "email": "support@id.me"
     }
 ],
     "suggest": {

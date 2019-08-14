@@ -1,0 +1,53 @@
+<?php if ($this->isOperational()) : ?>
+    <div class="discount troopid-connect">
+        <h2><?php echo $this->__("Discounts with ID.me") ?></h2>
+        <?php if ($this->hasAffiliation()): ?>
+            <div class="affiliation">
+                <?php echo $this->__("You have verified yourself as") ?>
+                <strong><?php echo $this->getAffiliation() ?></strong>
+            </div>
+        <?php else: ?>
+
+            <?php if ($this->isEnabled("military")) : ?>
+
+                <div class="button">
+                    <a href="javascript:void(0);" class="troopid-connect-trigger" data-scope="military" title="<?php echo $this->__("Verify your military affiliation with ID.me") ?>">
+                        <img alt="<?php echo $this->__("Verify your military affiliation with ID.me") ?>" src="https://s3.amazonaws.com/idme/buttons/troop_gray2_rnd_32.png" />
+                    </a>
+                </div>
+
+            <?php endif ?>
+
+            <?php if ($this->isEnabled("student")) : ?>
+
+                <div class="button">
+                    <a href="javascript:void(0);" class="troopid-connect-trigger" data-scope="student" title="<?php echo $this->__("Verify your student affiliation with ID.me") ?>">
+                        <img alt="<?php echo $this->__("Verify your student affiliation with ID.me") ?>" src="https://s3.amazonaws.com/idme/buttons/student_gray2_rnd_32.png" />
+                    </a>
+                </div>
+
+            <?php endif ?>
+
+            <?php if ($this->isEnabled("responder")) : ?>
+
+                <div class="button">
+                    <a href="javascript:void(0);" class="troopid-connect-trigger" data-scope="responder" title="<?php echo $this->__("Verify your first responder affiliation with ID.me") ?>">
+                        <img alt="<?php echo $this->__("Verify your first responder affiliation with ID.me") ?>" src="https://s3.amazonaws.com/idme/buttons/responder_gray2_rnd_32.png" />
+                    </a>
+                </div>
+
+            <?php endif ?>
+
+        <?php endif ?>
+        <div class="about">
+            <a href="javascript:void(0);" id="troopid-modal-trigger"><?php echo $this->__("What is this?") ?></a>
+        </div>
+
+        <div id="troopid-modal" style="display: none;"></div>
+        <div id="troopid-modal-content" style="display: none;">
+            <h3><?php echo $this->__("What is ID.me?") ?></h3>
+            <a href="javascript:void(0);" class="close" id="troopid-modal-closer">[x]</a>
+            <?php echo $this->getAbout() ?>
+        </div>
+    </div>
+<?php endif ?>

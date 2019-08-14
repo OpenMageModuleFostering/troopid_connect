@@ -5,12 +5,13 @@
     TroopID.Connect = Class.create({
 
         initialize: function(selector) {
-            this.selector = $(selector);
+            this.selector   = selector;
+            this.scope      = this.selector.readAttribute("data-scope");
             this.selector.observe("click", this.open.bind(this));
         },
 
         open: function(event) {
-            window.open("<?php echo $this->getEndpoint() ?>", "", "scrollbars=yes,menubar=no,status=no,location=no,toolbar=no,width=750,height=620,top=" + this.getTop() + ",left=" + this.getLeft());
+            window.open("<?php echo $this->getEndpoint() ?>?scope=" + this.scope, "", "scrollbars=yes,menubar=no,status=no,location=no,toolbar=no,width=750,height=620,top=" + this.getTop() + ",left=" + this.getLeft());
         },
 
         getTop: function() {
@@ -67,7 +68,9 @@
     });
 
     document.observe("dom:loaded", function() {
-        new TroopID.Connect("troopid-connect-trigger");
+        $$(".troopid-connect-trigger").each(function(item) {
+            new TroopID.Connect(item);
+        });
         new TroopID.Modal("troopid-modal-trigger");
     });
 </script>

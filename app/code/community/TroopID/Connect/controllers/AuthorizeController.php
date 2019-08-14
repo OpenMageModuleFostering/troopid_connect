@@ -1,5 +1,4 @@
 <?php
-
 class TroopID_Connect_AuthorizeController extends Mage_Core_Controller_Front_Action {
 
     private function getSession() {
@@ -19,7 +18,12 @@ class TroopID_Connect_AuthorizeController extends Mage_Core_Controller_Front_Act
     }
 
     public function authorizeAction() {
-        $this->getResponse()->setRedirect($this->getOauth()->getAuthorizeUrl());
+        $session    = $this->getSession();
+        $scope      = $this->getRequest()->getParam("scope");
+        $url        = $this->getOauth()->getAuthorizeUrl($scope);
+
+        $session->setScope($scope);
+        $this->getResponse()->setRedirect($url);
     }
 
     public function callbackAction() {
@@ -28,34 +32,38 @@ class TroopID_Connect_AuthorizeController extends Mage_Core_Controller_Front_Act
         $oauth   = $this->getOauth();
         $session = $this->getSession();
 
+        /* scope from session */
+        $scope = $session->getScope();
+
         /* code from initial callback */
         $code = $this->getRequest()->getParam("code");
 
         /* code was not found, invalid callback request */
         if (empty($code)) {
-            $session->addError($config->__("Troop ID verification failed, please contact the store owner"));
+            $session->addError($config->__("ID.me verification failed, please contact the store owner"));
         } else {
 
             /* request access token with the given code */
             $token = $oauth->getAccessToken($code);
 
             /* request user profile data with the given access token */
-            $data = $oauth->getProfileData($token);
+            $data = $oauth->getProfileData($token, $scope);
 
             if (empty($data)) {
-                $session->addError($config->__("Troop ID verification failed, please contact the store owner"));
+                $session->addError($config->__("ID.me verification failed, please contact the store owner"));
             } else {
                 $cart   = $this->getCart();
                 $quote  = $cart->getQuote();
 
                 if ($data["verified"]) {
-                    $quote->setTroopidAffiliation($data["affiliation"]);
                     $quote->setTroopidUid($data["id"]);
+                    $quote->setTroopidScope($scope);
+                    $quote->setTroopidAffiliation($data["affiliation"]);
                     $quote->save();
 
-                    $session->addSuccess($config->__("Successfully verified military affiliation via Troop ID"));
+                    $session->addSuccess($config->__("Successfully verified your affiliation via ID.me"));
                 } else {
-                    $session->addError($config->__("Unfortunately your have not verified your affiliation with Troop ID"));
+                    $session->addError($config->__("Unfortunately your have not verified your affiliation with ID.me"));
                 }
             }
         }

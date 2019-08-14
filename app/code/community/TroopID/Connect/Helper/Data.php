@@ -9,8 +9,8 @@ class TroopID_Connect_Helper_Data extends Mage_Core_Helper_Abstract {
         return Mage::getStoreConfig("troopid_connect/settings/" . $key, $storeId);
     }
 
-    public function isEnabled() {
-        return $this->getKey("enabled") == "1";
+    public function isEnabled($scope) {
+        return $this->getKey("enabled_" . $scope) === "1";
     }
 
     public function isSandbox() {
@@ -18,11 +18,35 @@ class TroopID_Connect_Helper_Data extends Mage_Core_Helper_Abstract {
     }
 
     public function isOperational() {
-        return $this->isEnabled() && $this->getKey("client_id") && $this->getKey("client_secret");
+        return $this->getKey("enabled") == "1" && $this->getKey("client_id") && $this->getKey("client_secret");
+    }
+
+    public function getAffiliationByScope($scope) {
+        $result = null;
+        $groups = $this->getAffiliations();
+
+        foreach ($groups as $group) {
+            if ($group["scope"] == $scope)
+                $result = $group["name"];
+        }
+
+        return $result;
+    }
+
+    public function getScopeByAffiliation($affiliation) {
+        $result = null;
+        $groups = $this->getAffiliations();
+
+        foreach ($groups as $group) {
+            if ($group["name"] == $affiliation)
+                $result = $group["scope"];
+        }
+
+        return $result;
     }
 
     public function getAffiliations() {
-        $cache  = Mage::getSingleton('core/cache');
+        $cache  = Mage::getSingleton("core/cache");
         $oauth  = Mage::helper("troopid_connect/oauth");
         $values = $cache->load(self::CACHE_KEY);
 
@@ -33,6 +57,15 @@ class TroopID_Connect_Helper_Data extends Mage_Core_Helper_Abstract {
         $cache->save($values, self::CACHE_KEY, array(self::CACHE_TAG), 60*60);
 
         return $values;
+    }
+
+    public function formatAffiliation($scope, $group) {
+        $affiliation = $this->getAffiliationByScope($scope);
+
+        if (!empty($group))
+            $affiliation .= " - " . $group;
+
+        return $affiliation;
     }
 
 }

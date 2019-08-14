@@ -2,13 +2,14 @@
 
 class TroopID_Connect_Helper_Oauth extends Mage_Core_Helper_Abstract {
 
-    const ENDPOINT_SANDBOX      = "https://api.sandbox.troopid.com";
-    const ENDPOINT_PRODUCTION   = "https://api.troopid.com";
+    const ENDPOINT_SANDBOX      = "https://api.sandbox.id.me";
+    const ENDPOINT_PRODUCTION   = "https://api.id.me";
 
     const AUTHORIZE_PATH    = "/oauth/authorize";
     const TOKEN_PATH        = "/oauth/token";
-    const PROFILE_PATH      = "/v1/me.json";
-    const AFFILIATIONS_PATH = "/v1/affiliations.json";
+    const AFFILIATIONS_PATH = "/v2/affiliations.json";
+
+    const API_ORIGIN = "MAGENTO-IDME";
 
     private function getConfig() {
         return Mage::helper("troopid_connect");
@@ -18,11 +19,12 @@ class TroopID_Connect_Helper_Oauth extends Mage_Core_Helper_Abstract {
         return Mage::getUrl("troopid/authorize/callback");
     }
 
-    public function getAuthorizeUrl() {
+    public function getAuthorizeUrl($scope = "military") {
 
         $params = array(
             "client_id"     => $this->getConfig()->getKey("client_id"),
             "redirect_uri"  => $this->getCallbackUrl(),
+            "scope"         => $scope,
             "response_type" => "code",
             "display"       => "popup"
         );
@@ -36,6 +38,10 @@ class TroopID_Connect_Helper_Oauth extends Mage_Core_Helper_Abstract {
         $client = new Zend_Http_Client();
 
         $client->setUri($this->getDomain() . self::TOKEN_PATH);
+        $client->setHeaders(array(
+            "X-API-ORIGIN" => self::API_ORIGIN
+        ));
+
         $client->setParameterPost(array(
             "client_id"     => $config->getKey("client_id"),
             "client_secret" => $config->getKey("client_secret"),
@@ -59,19 +65,28 @@ class TroopID_Connect_Helper_Oauth extends Mage_Core_Helper_Abstract {
     }
 
 
-    public function getProfileData($token) {
+    public function getProfileData($token, $scope) {
 
         if (empty($token))
             return null;
 
+        if (empty($scope))
+            $scope = "military";
+
+        $endpoints = array(
+            "military"  => "/v2/military.json",
+            "student"   => "/v2/student.json",
+            "responder" => "/v2/responder.json"
+        );
+
         $client = new Zend_Http_Client();
-        $client->setUri($this->getDomain() . self::PROFILE_PATH);
+        $client->setUri($this->getDomain() . $endpoints[$scope]);
         $client->setParameterGet(array(
             "access_token" => $token
         ));
 
         $client->setHeaders(array(
-            "X-API-ORIGIN" => "MAGENTO-TID"
+            "X-API-ORIGIN" => self::API_ORIGIN
         ));
 
         try {
@@ -96,7 +111,7 @@ class TroopID_Connect_Helper_Oauth extends Mage_Core_Helper_Abstract {
         ));
 
         $client->setHeaders(array(
-            "X-API-ORIGIN" => "MAGENTO-TID"
+            "X-API-ORIGIN" => self::API_ORIGIN
         ));
 
         $response   = $client->request("GET");
