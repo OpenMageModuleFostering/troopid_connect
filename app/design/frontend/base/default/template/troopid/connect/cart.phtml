@@ -1,5 +1,5 @@
 <?php if ($this->isOperational()) : ?>
-    <div class="discount troopid-connect">
+    <div class="discount idme-connect">
         <h2><?php echo $this->__("Get verified with ID.me") ?></h2>
         <?php if ($this->hasAffiliation()): ?>
             <div class="affiliation">
@@ -10,9 +10,10 @@
 
             <?php if ($this->isEnabled("military")) : ?>
 
-                <div class="button">
-                    <a href="javascript:void(0);" class="troopid-connect-trigger" data-scope="military" title="<?php echo $this->__("Verify your military affiliation with ID.me") ?>">
-                        <img alt="<?php echo $this->__("Verify your military affiliation with ID.me") ?>" src="https://s3.amazonaws.com/idme/buttons/troop_red_rnd_32.png" />
+                <div class="idme-button">
+                    <a href="javascript:void(0);" class="idme-connect-trigger" data-scope="military" title="<?php echo $this->__("Verify your military affiliation with ID.me") ?>">
+                        <img alt="Troop ID" src="https://s3.amazonaws.com/idme/assets/troop-id.png">
+                        TROOP ID
                     </a>
                 </div>
 
@@ -20,19 +21,9 @@
 
             <?php if ($this->isEnabled("student")) : ?>
 
-                <div class="button">
-                    <a href="javascript:void(0);" class="troopid-connect-trigger" data-scope="student" title="<?php echo $this->__("Verify your student affiliation with ID.me") ?>">
-                        <img alt="<?php echo $this->__("Verify your student affiliation with ID.me") ?>" src="https://s3.amazonaws.com/idme/buttons/student_gray2_rnd_32.png" />
-                    </a>
-                </div>
-
-            <?php endif ?>
-
-            <?php if ($this->isEnabled("responder")) : ?>
-
-                <div class="button">
-                    <a href="javascript:void(0);" class="troopid-connect-trigger" data-scope="responder" title="<?php echo $this->__("Verify your first responder affiliation with ID.me") ?>">
-                        <img alt="<?php echo $this->__("Verify your first responder affiliation with ID.me") ?>" src="https://s3.amazonaws.com/idme/buttons/responder_gray2_rnd_32.png" />
+                <div class="idme-button">
+                    <a href="javascript:void(0);" class="idme-connect-trigger" data-scope="student" title="<?php echo $this->__("Verify your student affiliation with ID.me") ?>">
+                        STUDENT ID
                     </a>
                 </div>
 
@@ -40,9 +31,19 @@
 
             <?php if ($this->isEnabled("teacher")) : ?>
 
-                <div class="button">
-                    <a href="javascript:void(0);" class="troopid-connect-trigger" data-scope="teacher" title="<?php echo $this->__("Verify your teacher affiliation with ID.me") ?>">
-                        <img alt="<?php echo $this->__("Verify your teacher affiliation with ID.me") ?>" src="https://s3.amazonaws.com/idme/buttons/teacher_gray1_rnd_32.png" />
+                <div class="idme-button">
+                    <a href="javascript:void(0);" class="idme-connect-trigger" data-scope="teacher" title="<?php echo $this->__("Verify your teacher affiliation with ID.me") ?>">
+                        TEACHER ID
+                    </a>
+                </div>
+
+            <?php endif ?>
+
+            <?php if ($this->isEnabled("responder")) : ?>
+
+                <div class="idme-button">
+                    <a href="javascript:void(0);" class="idme-connect-trigger" data-scope="responder" title="<?php echo $this->__("Verify your first responder affiliation with ID.me") ?>">
+                        FIRST RESPONDER ID
                     </a>
                 </div>
 
@@ -50,19 +51,25 @@
 
         <?php endif ?>
         <div class="about">
-            <a href="javascript:void(0);" class="troopid-modal-trigger"><?php echo $this->__("What is this?") ?></a>
-            <?php if ($this->hasAffiliation()): ?>
-                | <a href="<?php echo $this->getRemoveUrl() ?>" title="<?php echo $this->__("Remove your verified affiliation") ?>">
-                    <?php echo $this->__("Remove") ?>
-                </a>
-            <?php endif ?>
+            <div class="container">
+                <img alt="ID.me" src="https://s3.amazonaws.com/idme/assets/lock.png" style="vertical-align:middle; margin:0 3px 5px 0;" width="8">
+                Verification by ID.me &bull;
+                <a href="javascript:void(0);" class="idme-modal-trigger"><?php echo $this->__("What is ID.me?") ?></a>
+                <?php if ($this->hasAffiliation()): ?>
+                    | <a href="<?php echo $this->getRemoveUrl() ?>" title="<?php echo $this->__("Remove your verified affiliation") ?>">
+                        <?php echo $this->__("Remove") ?>
+                    </a>
+                <?php endif ?>
+            </div>
         </div>
 
-        <div id="troopid-modal" style="display: none;"></div>
-        <div id="troopid-modal-content" style="display: none;">
+        <div id="idme-modal" style="display: none;"></div>
+        <div id="idme-modal-content" style="display: none;">
             <h3><?php echo $this->__("What is ID.me?") ?></h3>
-            <a href="javascript:void(0);" class="close" id="troopid-modal-closer">[x]</a>
-            <?php echo $this->getAbout() ?>
+            <a href="javascript:void(0);" class="close" id="idme-modal-closer"></a>
+            <div class="content">
+                <?php echo $this->getAbout() ?>
+             </div>
         </div>
     </div>
 <?php endif ?>

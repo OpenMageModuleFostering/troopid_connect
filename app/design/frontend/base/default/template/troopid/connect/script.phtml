@@ -1,8 +1,8 @@
 <script type="text/javascript">
-    if (typeof(TroopID) == "undefined")
-        TroopID = {};
+    if (typeof(IDme) == "undefined")
+        IDme = {};
 
-    TroopID.Connect = Class.create({
+    IDme.Connect = Class.create({
 
         initialize: function(selector) {
             this.selector   = selector;
@@ -24,15 +24,15 @@
 
     });
 
-    TroopID.Modal = Class.create({
+    IDme.Modal = Class.create({
 
         initialize: function(selector) {
             this.selector = $(selector);
             this.selector.observe("click", this.open.bind(this));
 
-            this.overlay = $("troopid-modal");
-            this.content = $("troopid-modal-content");
-            this.closer  = $("troopid-modal-closer");
+            this.overlay = $("idme-modal");
+            this.content = $("idme-modal-content");
+            this.closer  = $("idme-modal-closer");
 
             this.overlay.observe("click", this.close.bind(this));
             this.closer.observe("click", this.close.bind(this));
@@ -44,10 +44,6 @@
         },
 
         open: function() {
-            this.content.setStyle({
-                width: this.getWidth() + "px",
-                left: ((document.viewport.getWidth() - this.getWidth()) / 2) + "px"
-            });
             this.overlay.show();
             this.content.show();
         },
@@ -55,25 +51,22 @@
         close: function() {
             this.content.hide();
             this.overlay.hide();
-        },
-
-        getWidth: function() {
-            return (document.viewport.getWidth() / 4);
-        },
-
-        getHeight: function() {
-            return (document.viewport.getHeight() / 2);
         }
 
     });
 
     document.observe("dom:loaded", function() {
-        $$(".troopid-connect-trigger").each(function(item) {
-            new TroopID.Connect(item);
+        $$(".idme-connect-trigger").each(function(item) {
+            new IDme.Connect(item);
         });
 
-        $$(".troopid-modal-trigger").each(function(item) {
-            new TroopID.Modal(item);
+        // backwards compatibility support
+        $$(".troopid-connect-trigger").each(function(item) {
+            new IDme.Connect(item);
+        });
+
+        $$(".idme-modal-trigger").each(function(item) {
+            new IDme.Modal(item);
         });
     });
 </script>

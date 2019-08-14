@@ -3,7 +3,7 @@
     "type": "magento-module",
     "license": "OSL-v3.0",
     "homepage": "",
-    "description": "TroopID Connect integration.",
+    "description": "ID.me Integration",
     "authors": [
     {
         "name": "ID.me",

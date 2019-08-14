@@ -10,11 +10,11 @@ class TroopID_Connect_Block_Cart extends Mage_Checkout_Block_Cart_Abstract {
     }
 
     public function getEndpoint() {
-        return Mage::getUrl("troopid/authorize/authorize");
+        return Mage::getUrl("troopid/authorize/authorize", array('_secure' => Mage::app()->getFrontController()->getRequest()->isSecure()));
     }
 
     public function getRemoveUrl() {
-        return Mage::getUrl("troopid/authorize/remove");
+        return Mage::getUrl("troopid/authorize/remove", array('_secure' => Mage::app()->getFrontController()->getRequest()->isSecure()));
     }
 
     public function hasAffiliation() {

@@ -3,7 +3,7 @@
     <checkout_cart_index>
         <reference name="head">
             <action method="addCss">
-                <stylesheet>troopid/troopid.css</stylesheet>
+                <stylesheet>troopid/idme.css</stylesheet>
             </action>
         </reference>
         <reference name="before_body_end">

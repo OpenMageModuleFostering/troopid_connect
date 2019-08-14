@@ -3,7 +3,7 @@
     <default>
         <reference name="head">
             <action method="addCss">
-                <stylesheet>troopid/troopid.css</stylesheet>
+                <stylesheet>troopid/idme.css</stylesheet>
             </action>
         </reference>
     </default>

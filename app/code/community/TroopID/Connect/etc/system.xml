@@ -28,7 +28,7 @@
                             <frontend_class>troopid-connect first</frontend_class>
                             <frontend_model>troopid_connect/adminhtml_system_config_custom</frontend_model>
                             <comment>
-                                <![CDATA[Create discounts on special offers exclusively for verified military members, students or first responders via ID.me]]>
+                                <![CDATA[Create discounts on special offers exclusively for verified military members, students, teachers or first responders via ID.me]]>
                             </comment>
                             <sort_order>0</sort_order>
                             <show_in_default>1</show_in_default>
@@ -47,7 +47,6 @@
                             <apps_url><![CDATA[https://developer.id.me/applications]]></apps_url>
                             <docs_url><![CDATA[https://developer.id.me/documentation]]></docs_url>
                             <learn_more_url><![CDATA[https://www.id.me/partner-with-us]]></learn_more_url>
-                            <sandbox_url><![CDATA[https://developer.sandbox.id.me]]></sandbox_url>
                         </instructions>
                         <enabled>
                             <label>Enabled?</label>
@@ -77,16 +76,6 @@
                             <show_in_store>1</show_in_store>
                             <comment/>
                         </client_secret>
-                        <sandbox_mode>
-                            <label>Sandbox Mode?</label>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>5</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <comment/>
-                        </sandbox_mode>
                         <enabled_military>
                             <label>Military verification</label>
                             <frontend_type>select</frontend_type>
@@ -135,7 +124,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <comment>
-                                <![CDATA[This text will be displayed as "What is this?" in your shopping cart next to ID.me Connect button]]>
+                                <![CDATA[This text will be displayed as "What is ID.me?" in your shopping cart next to ID.me buttons]]>
                             </comment>
                         </about>
                     </fields>

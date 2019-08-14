@@ -55,7 +55,7 @@ class TroopID_Connect_AuthorizeController extends Mage_Core_Controller_Front_Act
 
         /* code was not found, invalid callback request */
         if (empty($code)) {
-            $session->addError($config->__("ID.me verification failed, please contact the store owner"));
+            $session->addError($config->__("ID.me verification failed, please contact the store owner (code 101)."));
         } else {
 
             /* request access token with the given code */
@@ -65,7 +65,7 @@ class TroopID_Connect_AuthorizeController extends Mage_Core_Controller_Front_Act
             $data = $oauth->getProfileData($token, $scope);
 
             if (empty($data)) {
-                $session->addError($config->__("ID.me verification failed, please contact the store owner"));
+                $session->addError($config->__("ID.me verification failed, please contact the store owner (code 102)."));
             } else {
                 $cart   = $this->getCart();
                 $quote  = $cart->getQuote();

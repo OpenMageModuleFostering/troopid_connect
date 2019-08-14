@@ -13,10 +13,6 @@ class TroopID_Connect_Helper_Data extends Mage_Core_Helper_Abstract {
         return $this->getKey("enabled_" . $scope) === "1";
     }
 
-    public function isSandbox() {
-        return $this->getKey("sandbox_mode") == "1";
-    }
-
     public function isOperational() {
         return $this->getKey("enabled") == "1" && $this->getKey("client_id") && $this->getKey("client_secret");
     }

@@ -2,12 +2,11 @@
 
 class TroopID_Connect_Helper_Oauth extends Mage_Core_Helper_Abstract {
 
-    const ENDPOINT_SANDBOX      = "https://api.sandbox.id.me";
-    const ENDPOINT_PRODUCTION   = "https://api.id.me";
+    const ENDPOINT_PRODUCTION = "https://api.id.me";
 
     const AUTHORIZE_PATH    = "/oauth/authorize";
     const TOKEN_PATH        = "/oauth/token";
-    const AFFILIATIONS_PATH = "/v2/affiliations.json";
+    const AFFILIATIONS_PATH = "/api/public/v2/affiliations.json";
 
     const API_ORIGIN = "MAGENTO-IDME";
 
@@ -74,10 +73,10 @@ class TroopID_Connect_Helper_Oauth extends Mage_Core_Helper_Abstract {
             $scope = "military";
 
         $endpoints = array(
-            "military"  => "/v2/military.json",
-            "student"   => "/v2/student.json",
-            "responder" => "/v2/responder.json",
-            "teacher"   => "/v2/teacher.json"
+            "military"  => "/api/public/v2/military.json",
+            "student"   => "/api/public/v2/student.json",
+            "responder" => "/api/public/v2/responder.json",
+            "teacher"   => "/api/public/v2/teacher.json"
         );
 
         $client = new Zend_Http_Client();
@@ -125,11 +124,7 @@ class TroopID_Connect_Helper_Oauth extends Mage_Core_Helper_Abstract {
     }
 
     private function getDomain() {
-        if ($this->getConfig()->isSandbox()) {
-            return self::ENDPOINT_SANDBOX;
-        } else {
-            return self::ENDPOINT_PRODUCTION;
-        }
+        return self::ENDPOINT_PRODUCTION;
     }
 
     private function toQuery($params) {
