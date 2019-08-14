@@ -76,7 +76,8 @@ class TroopID_Connect_Helper_Oauth extends Mage_Core_Helper_Abstract {
         $endpoints = array(
             "military"  => "/v2/military.json",
             "student"   => "/v2/student.json",
-            "responder" => "/v2/responder.json"
+            "responder" => "/v2/responder.json",
+            "teacher"   => "/v2/teacher.json"
         );
 
         $client = new Zend_Http_Client();

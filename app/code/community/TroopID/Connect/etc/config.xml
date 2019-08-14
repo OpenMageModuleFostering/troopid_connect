@@ -124,6 +124,7 @@
                 <enable_military>1</enable_military>
                 <enable_student>1</enable_student>
                 <enable_responder>1</enable_responder>
+                <enable_teachers>1</enable_teachers>
                 <about><![CDATA[
 <p><strong>Who is eligible for ID.me membership?</strong><br/>
 Students, First Responders, Veterans, Service Members, Retirees, Military Spouses and their Immediate Family Members i.e. parents and children of Veterans, Service Members, Retirees and Military Spouses are eligible to sign up for ID.me</p>

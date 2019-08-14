@@ -38,6 +38,16 @@
 
             <?php endif ?>
 
+            <?php if ($this->isEnabled("teacher")) : ?>
+
+                <div class="button">
+                    <a href="javascript:void(0);" class="troopid-connect-trigger" data-scope="teacher" title="<?php echo $this->__("Verify your teacher affiliation with ID.me") ?>">
+                        <img alt="<?php echo $this->__("Verify your teacher affiliation with ID.me") ?>" src="https://s3.amazonaws.com/idme/buttons/teacher_gray1_rnd_32.png" />
+                    </a>
+                </div>
+
+            <?php endif ?>
+
         <?php endif ?>
         <div class="about">
             <a href="javascript:void(0);" class="troopid-modal-trigger"><?php echo $this->__("What is this?") ?></a>
