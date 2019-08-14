@@ -15,7 +15,11 @@ class TroopID_Connect_Helper_Oauth extends Mage_Core_Helper_Abstract {
     }
 
     private function getCallbackUrl() {
-        return Mage::getUrl("troopid/authorize/callback", array('_secure' => Mage::app()->getFrontController()->getRequest()->isSecure(), "_nosid" => true));
+        return Mage::getUrl("troopid/authorize/callback", array(
+            "_type"     => Mage_Core_Model_Store::URL_TYPE_WEB,
+            "_secure"   => Mage::app()->getFrontController()->getRequest()->isSecure(),
+            "_nosid"    => true
+        ));
     }
 
     public function getAuthorizeUrl($scope = "military") {

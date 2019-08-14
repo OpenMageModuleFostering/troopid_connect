@@ -40,11 +40,15 @@ class TroopID_Connect_Block_Adminhtml_System_Config_Instructions extends TroopID
     }
 
     public function getCallbackUrl() {
-        return Mage::getUrl("troopid/authorize/callback", array('_secure' => Mage::app()->getFrontController()->getRequest()->isSecure(), "_nosid" => true));
+        return Mage::getUrl("troopid/authorize/callback", array(
+            "_type"     => Mage_Core_Model_Store::URL_TYPE_WEB,
+            "_secure"   => $this->getRequest()->isSecure(),
+            "_nosid"    => true
+        ));
     }
 
     public function getBaseUrl() {
-        return $this->getStore()->getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB, array('_secure' => Mage::app()->getFrontController()->getRequest()->isSecure(), "_nosid" => true));
+        return $this->getStore()->getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB, $this->getRequest()->isSecure());
     }
 
 }
