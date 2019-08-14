@@ -28,10 +28,10 @@
         <events>
             <checkout_cart_save_before>
                 <observers>
-                    <clear_troopid_affiliation>
-                        <class>troopid_connect/cart_observer</class>
+                    <troopid_connect>
+                        <model>troopid_connect/cart_observer</model>
                         <method>clearAffiliation</method>
-                    </clear_troopid_affiliation>
+                    </troopid_connect>
                 </observers>
             </checkout_cart_save_before>
         </events>
@@ -49,12 +49,30 @@
         <events>
             <salesrule_rule_condition_combine>
                 <observers>
-                    <add_troopid_condition_to_sales_rule>
-                        <class>troopid_connect/rule_observer</class>
+                    <troopid_connect>
+                        <model>troopid_connect/rule_observer</model>
                         <method>addCondition</method>
-                    </add_troopid_condition_to_sales_rule>
+                    </troopid_connect>
                 </observers>
             </salesrule_rule_condition_combine>
+
+            <sales_order_grid_collection_load_before>
+                <observers>
+                    <troopid_connect>
+                        <model>troopid_connect/order_observer</model>
+                        <method>addCollection</method>
+                    </troopid_connect>
+                </observers>
+            </sales_order_grid_collection_load_before>
+
+            <core_block_abstract_prepare_layout_before>
+                <observers>
+                    <troopid_connect>
+                        <model>troopid_connect/order_observer</model>
+                        <method>addColumn</method>
+                    </troopid_connect>
+                </observers>
+            </core_block_abstract_prepare_layout_before>
         </events>
     </adminhtml>
 

@@ -26,27 +26,22 @@
 }
 
 .idme-connect .idme-button {
-    margin: 10px 0 0 0;
+    margin: 5px 0 0 5px;
     display: inline-block;
+}
+
+.idme-connect .idme-button:first-child {
+    margin-left: 0;
 }
 
 .idme-connect .idme-button a {
     display: inline-block;
-    background: none repeat scroll 0% 0% rgb(255, 255, 255);
-    font-family: Open Sans, Arial, sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    color: rgb(39, 160, 227);
-    border: 2px solid rgb(237, 240, 242);
-    border-radius: 10px;
-    padding: 8px 16px;
-    text-decoration: none;
+    margin: 0;
 }
 
 .idme-connect .idme-button a img {
-    display: inline;
-    vertical-align: middle;
-    margin: 0 3px 2px 0;
+    height: 35px;
+    margin: 0;
 }
 
 .idme-connect .about {

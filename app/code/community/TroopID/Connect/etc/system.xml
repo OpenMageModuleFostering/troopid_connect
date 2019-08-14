@@ -44,9 +44,9 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <developer_url><![CDATA[https://developer.id.me]]></developer_url>
-                            <apps_url><![CDATA[https://developer.id.me/applications]]></apps_url>
+                            <apps_url><![CDATA[https://developer.id.me/organizations]]></apps_url>
                             <docs_url><![CDATA[https://developer.id.me/documentation]]></docs_url>
-                            <learn_more_url><![CDATA[https://www.id.me/partner-with-us]]></learn_more_url>
+                            <learn_more_url><![CDATA[https://business.id.me]]></learn_more_url>
                         </instructions>
                         <enabled>
                             <label>Enabled?</label>

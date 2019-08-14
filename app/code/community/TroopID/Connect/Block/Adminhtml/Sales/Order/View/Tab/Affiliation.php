@@ -1,6 +1,6 @@
 <?php
 
-class TroopID_Connect_Block_Adminhtml_Sales_Order_View_Tab_Affiliation extends Mage_Adminhtml_Block_Template implements Mage_Adminhtml_Block_Widget_Tab_Interface  {
+class TroopID_Connect_Block_Adminhtml_Sales_Order_View_Tab_Affiliation extends Mage_Adminhtml_Block_Template implements Mage_Adminhtml_Block_Widget_Tab_Interface {
 
     protected function _construct()
     {
