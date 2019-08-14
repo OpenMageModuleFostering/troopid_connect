@@ -71,6 +71,9 @@
         $$(".troopid-connect-trigger").each(function(item) {
             new TroopID.Connect(item);
         });
-        new TroopID.Modal("troopid-modal-trigger");
+
+        $$(".troopid-modal-trigger").each(function(item) {
+            new TroopID.Modal(item);
+        });
     });
 </script>
