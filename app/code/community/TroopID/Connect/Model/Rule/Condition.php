@@ -56,7 +56,7 @@ class TroopID_Connect_Model_Rule_Condition extends Mage_Rule_Model_Condition_Abs
         $helper = Mage::helper("troopid_connect");
 
         if (!$helper->isOperational())
-            return true;
+            return false;
 
         $quote  = $object->getQuote();
         $scope  = $quote->getTroopidScope();

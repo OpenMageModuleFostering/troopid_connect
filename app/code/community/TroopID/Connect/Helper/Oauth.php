@@ -46,8 +46,8 @@ class TroopID_Connect_Helper_Oauth extends Mage_Core_Helper_Abstract {
         ));
 
         $client->setParameterPost(array(
-            "client_id"     => $config->getKey("client_id"),
-            "client_secret" => $config->getKey("client_secret"),
+            "client_id"     => trim($config->getKey("client_id")),
+            "client_secret" => trim($config->getKey("client_secret")),
             "redirect_uri"  => $this->getCallbackUrl(),
             "code"          => $code,
             "grant_type"    => "authorization_code"
