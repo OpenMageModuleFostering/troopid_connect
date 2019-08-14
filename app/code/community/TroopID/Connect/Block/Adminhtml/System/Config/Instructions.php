@@ -9,8 +9,8 @@ class TroopID_Connect_Block_Adminhtml_System_Config_Instructions extends TroopID
         $html .= '<ul class="steps">';
         $html .= '<li>' . $this->__("Create a developer account at") . ' <a href="' . $config["developer_url"] . '" target="_blank">' . $config["developer_url"] . '</a></li>';
         $html .= '<li>' . $this->__("Register an application at") . ' <a href="' . $config["apps_url"] . '" target="_blank">' . $config["apps_url"] . '</a></li>';
-        $html .= '<li>' . $this->__("Fill in <strong>Redirect URI</strong> with") . ' ' . Mage::getUrl("troopid/authorize/callback", array("_store" => $this->getStore()->getCode(), "_store_to_url" => false, "_nosid" => true)) . '</li>';
-        $html .= '<li>' . $this->__("Fill in <strong>Base URI</strong> with") . ' ' .  $this->getStore()->getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) . '</li>';
+        $html .= '<li>' . $this->__("Fill in <strong>Redirect URI</strong> with") . ' ' . $this->getCallbackUrl() . '</li>';
+        $html .= '<li>' . $this->__("Fill in <strong>Base URI</strong> with") . ' ' .  $this->getBaseUrl() . '</li>';
         $html .= '<li>' . $this->__("Copy and paste your <strong>Client ID</strong> and <strong>Client Secret</strong> values from your application settings on ID.me") . '</li>';
         $html .= '<li>' . $this->__("That's it! You are ready to go.") . '</li>';
         $html .= '<li>' . $this->__("You can customize the buttons by overriding or extending the cart template.") . '</li>';
@@ -37,6 +37,14 @@ class TroopID_Connect_Block_Adminhtml_System_Config_Instructions extends TroopID
         }
 
         return $front;
+    }
+
+    public function getCallbackUrl() {
+        return Mage::getUrl("troopid/authorize/callback", array('_secure' => Mage::app()->getFrontController()->getRequest()->isSecure(), "_nosid" => true));
+    }
+
+    public function getBaseUrl() {
+        return $this->getStore()->getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB, array('_secure' => Mage::app()->getFrontController()->getRequest()->isSecure(), "_nosid" => true));
     }
 
 }
