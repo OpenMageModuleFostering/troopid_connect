@@ -47,6 +47,7 @@
                             <apps_url><![CDATA[https://developer.id.me/applications]]></apps_url>
                             <docs_url><![CDATA[https://developer.id.me/documentation]]></docs_url>
                             <learn_more_url><![CDATA[https://www.id.me/partner-with-us]]></learn_more_url>
+                            <sandbox_url><![CDATA[https://developer.sandbox.id.me]]></sandbox_url>
                         </instructions>
                         <enabled>
                             <label>Enabled?</label>

@@ -5,7 +5,8 @@ class TroopID_Connect_Block_Adminhtml_System_Config_Instructions extends TroopID
     protected function _getContentHtml($element) {
         $config = $element->getData("field_config")->asArray();
 
-        $html = '<ul class="steps">';
+        $html = '<span class="title">In order to test the integration in sandbox mode, follow the steps below on <a href="' . $config["sandbox_url"] . '" target="_blank">' . $config["sandbox_url"] . '</a></span>';
+        $html .= '<ul class="steps">';
         $html .= '<li>' . $this->__("Create a developer account at") . ' <a href="' . $config["developer_url"] . '" target="_blank">' . $config["developer_url"] . '</a></li>';
         $html .= '<li>' . $this->__("Register an application at") . ' <a href="' . $config["apps_url"] . '" target="_blank">' . $config["apps_url"] . '</a></li>';
         $html .= '<li>' . $this->__("Fill in <strong>Redirect URI</strong> with") . ' ' . Mage::getUrl("troopid/authorize/callback", array("_store" => $this->getStore()->getCode(), "_store_to_url" => false, "_nosid" => true)) . '</li>';

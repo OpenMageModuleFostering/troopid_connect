@@ -26,7 +26,12 @@
     display: block;
     padding: 0;
 }
+.troopid-config .troopid-connect .title {
+    display: block;
+    font-weight: bold;
+}
 .troopid-config .troopid-connect .steps {
+    display: block;
     margin: 0 0 0 15px;
     list-style: square;
 }
