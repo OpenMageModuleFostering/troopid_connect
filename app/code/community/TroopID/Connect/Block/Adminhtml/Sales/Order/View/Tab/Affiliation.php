@@ -2,8 +2,7 @@
 
 class TroopID_Connect_Block_Adminhtml_Sales_Order_View_Tab_Affiliation extends Mage_Adminhtml_Block_Template implements Mage_Adminhtml_Block_Widget_Tab_Interface {
 
-    protected function _construct()
-    {
+    protected function _construct() {
         parent::_construct();
         $this->setTemplate("troopid/connect/affiliation.phtml");
     }
@@ -24,11 +23,11 @@ class TroopID_Connect_Block_Adminhtml_Sales_Order_View_Tab_Affiliation extends M
         return false;
     }
 
-    public function getOrder(){
+    public function getOrder() {
         return Mage::registry("current_order");
     }
 
-    public function getUID() {
+    public function getUUID() {
          return $this->getOrder()->getTroopidUid();
     }
 
