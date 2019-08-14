@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <TroopID_Connect>
+            <version>0.1.0</version>
+        </TroopID_Connect>
+    </modules>
+
+    <frontend>
+        <routers>
+            <troopid_connect>
+                <use>standard</use>
+                <args>
+                    <module>TroopID_Connect</module>
+                    <frontName>troopid</frontName>
+                </args>
+            </troopid_connect>
+        </routers>
+
+        <layout>
+            <updates>
+                <troopid_connect>
+                    <file>troopid_connect.xml</file>
+                </troopid_connect>
+            </updates>
+        </layout>
+
+        <translate>
+            <modules>
+                <TroopID_Connect>
+                    <files>
+                        <default>TroopID_Connect.csv</default>
+                    </files>
+                </TroopID_Connect>
+            </modules>
+        </translate>
+    </frontend>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <troopid_connect>
+                    <file>troopid_connect.xml</file>
+                </troopid_connect>
+            </updates>
+        </layout>
+
+        <translate>
+            <modules>
+                <TroopID_Connect>
+                    <files>
+                        <default>TroopID_Connect.csv</default>
+                    </files>
+                </TroopID_Connect>
+            </modules>
+        </translate>
+    </adminhtml>
+
+    <global>
+        <events>
+            <salesrule_rule_condition_combine>
+                <observers>
+                    <add_condition_to_sales_rule>
+                        <class>troopid_connect/rule_observer</class>
+                        <method>addCondition</method>
+                    </add_condition_to_sales_rule>
+                </observers>
+            </salesrule_rule_condition_combine>
+        </events>
+
+        <fieldsets>
+            <sales_convert_quote>
+                <troopid_affiliation>
+                    <to_order>*</to_order>
+                </troopid_affiliation>
+                <troopid_uid>
+                    <to_order>*</to_order>
+                </troopid_uid>
+            </sales_convert_quote>
+        </fieldsets>
+
+        <models>
+            <troopid_connect>
+                <class>TroopID_Connect_Model</class>
+            </troopid_connect>
+        </models>
+
+        <blocks>
+            <troopid_connect>
+                <class>TroopID_Connect_Block</class>
+            </troopid_connect>
+        </blocks>
+
+        <helpers>
+            <troopid_connect>
+                <class>TroopID_Connect_Helper</class>
+            </troopid_connect>
+        </helpers>
+
+        <resources>
+            <troopid_connect_setup>
+                <setup>
+                    <module>TroopID_Connect</module>
+                    <class>Mage_Sales_Model_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </troopid_connect_setup>
+
+            <troopid_connect_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </troopid_connect_write>
+
+            <troopid_connect_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </troopid_connect_read>
+        </resources>
+    </global>
+
+    <default>
+        <troopid_connect>
+            <settings>
+                <enabled>1</enabled>
+                <sandbox_mode>1</sandbox_mode>
+                <about><![CDATA[
+<p><strong>Who is eligible for Troop ID membership?</strong><br/>
+Veterans, Service Members, Retirees, Military Spouses and their Immediate Family Members i.e. parents and children of Veterans, Service Members, Retirees and Military Spouses are eligible to sign up for Troop ID.</p>
+<p><strong>Does signing up for Troop ID mean I'll start receiving newsletters and promotions from Troop ID?</strong><br/>
+No, you may receive a message inviting you to opt in to relevant communications, but you are not required or automatically signed up for these newsletters.</p>
+]]>
+                </about>
+            </settings>
+        </troopid_connect>
+    </default>
+</config>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addCss"><stylesheet>troopid_connect/troopid.css</stylesheet></action>
+        </reference>
+    </default>
+
+    <adminhtml_sales_order_view>
+        <reference name="order_info">
+            <action method="setTemplate">
+                <template>troopid/connect/order.phtml</template>
+            </action>
+        </reference>
+    </adminhtml_sales_order_view>
+</layout>

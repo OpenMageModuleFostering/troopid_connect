@@ -1,0 +1,16 @@
+{
+    "name": "OpenMageModuleFostering/TroopID_Connect",
+    "type": "magento-module",
+    "license": "OSL-v3.0",
+    "homepage": "",
+    "description": "TroopID Connect integration.",
+    "authors": [
+    {
+        "name": "Troop ID",
+        "email": "support@troopid.com"
+    }
+],
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}

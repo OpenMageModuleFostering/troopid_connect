@@ -1,0 +1,73 @@
+<script type="text/javascript">
+    if (typeof(TroopID) == "undefined")
+        TroopID = {};
+
+    TroopID.Connect = Class.create({
+
+        initialize: function(selector) {
+            this.selector = $(selector);
+            this.selector.observe("click", this.open.bind(this));
+        },
+
+        open: function(event) {
+            window.open("<?php echo $this->getEndpoint() ?>", "", "scrollbars=yes,menubar=no,status=no,location=no,toolbar=no,width=750,height=620,top=" + this.getTop() + ",left=" + this.getLeft());
+        },
+
+        getTop: function() {
+            return (document.viewport.getHeight() - 780) / 3;
+        },
+
+        getLeft: function() {
+            return (document.viewport.getWidth() - 750) / 2;
+        }
+
+    });
+
+    TroopID.Modal = Class.create({
+
+        initialize: function(selector) {
+            this.selector = $(selector);
+            this.selector.observe("click", this.open.bind(this));
+
+            this.overlay = $("troopid-modal");
+            this.content = $("troopid-modal-content");
+            this.closer  = $("troopid-modal-closer");
+
+            this.overlay.observe("click", this.close.bind(this));
+            this.closer.observe("click", this.close.bind(this));
+
+            document.observe("keypress", function(event) {
+                if (event.keyCode == 27)
+                    this.close();
+            }.bind(this));
+        },
+
+        open: function() {
+            this.content.setStyle({
+                width: this.getWidth() + "px",
+                left: ((document.viewport.getWidth() - this.getWidth()) / 2) + "px"
+            });
+            this.overlay.show();
+            this.content.show();
+        },
+
+        close: function() {
+            this.content.hide();
+            this.overlay.hide();
+        },
+
+        getWidth: function() {
+            return (document.viewport.getWidth() / 4);
+        },
+
+        getHeight: function() {
+            return (document.viewport.getHeight() / 2);
+        }
+
+    });
+
+    document.observe("dom:loaded", function() {
+        new TroopID.Connect("troopid-connect-trigger");
+        new TroopID.Modal("troopid-modal-trigger");
+    });
+</script>
