@@ -1,16 +1,19 @@
 {
-    "name": "OpenMageModuleFostering/TroopID_Connect",
+    "name": "OpenMageModuleFostering\/TroopID_Connect",
     "type": "magento-module",
     "license": "OSL-v3.0",
     "homepage": "",
     "description": "ID.me Integration",
     "authors": [
-    {
-        "name": "ID.me",
-        "email": "support@id.me"
-    }
-],
+        {
+            "name": "ID.me",
+            "email": "support@id.me"
+        }
+    ],
     "suggest": {
-        "magento-hackathon/magento-composer-installer": "*"
-    }
+        "magento-hackathon\/magento-composer-installer": "*"
+    },
+    "keywords": [
+        "openmage-module"
+    ]
 }
